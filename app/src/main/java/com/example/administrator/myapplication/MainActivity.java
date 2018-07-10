@@ -61,19 +61,23 @@ public class MainActivity extends AppCompatActivity {
             //搜索到的wifi列表信息
             List<ScanResult> scanResults = wm.getScanResults();
 
-            for (ScanResult sr:scanResults){
+            for (ScanResult sr : scanResults) {
                 listinfo.append("wifi网络ID：");
                 listinfo.append(sr.SSID);
                 listinfo.append("\nwifi MAC地址：");
                 listinfo.append(sr.BSSID);
                 listinfo.append("\nwifi信号强度：");
-                listinfo.append(sr.level+"\n\n");
+                listinfo.append(sr.level + "\n\n");
             }
             editText2.setText(listinfo.toString());
-            String curr_connected_wifi=null;
-            curr_connected_wifi="Currently connecting WiFi \'"+designation+"\' \nRssi: "+strength+
-                    "\nMac addr: "+addr+"\nspeed: "+speed+" "+unit;
+            String curr_connected_wifi = null;
+            curr_connected_wifi = "Currently connecting WiFi \'" + designation + "\' \nRssi: " + strength +
+                    "\nMac addr: " + addr + "\nspeed: " + speed + " " + unit;
             editText1.setText(curr_connected_wifi.toString());
+        } else {
+            editText2.setText("找不到wifi");
+            editText1.setText("找不到wifi");
+
         }
         //------------------------------------------------------------------->
     }
