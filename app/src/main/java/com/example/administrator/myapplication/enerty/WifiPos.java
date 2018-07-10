@@ -11,7 +11,7 @@ import java.util.Date;
 public class WifiPos extends DataSupport {
 
     private int id;
-    private int classId;
+    private String classId;
     private String wifiResult;
     private Date time;
 
@@ -23,11 +23,11 @@ public class WifiPos extends DataSupport {
         this.id = id;
     }
 
-    public int getClassId() {
+    public String getClassId() {
         return classId;
     }
 
-    public void setClassId(int classId) {
+    public void setClassId(String classId) {
         this.classId = classId;
     }
 

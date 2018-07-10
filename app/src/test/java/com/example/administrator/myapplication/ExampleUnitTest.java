@@ -15,12 +15,12 @@ import java.util.Date;
 public class ExampleUnitTest {
     @Test
     public void additsCorrect() throws Exception {
-        for(int i=0;i<10;i++) {
-            WifiPos wifiPos = new WifiPos();
-            wifiPos.setClassId(1);
-            wifiPos.setTime(new Date());
-            wifiPos.setWifiResult("aaaa" + i);
-            wifiPos.save();
-        }
+//        for(int i=0;i<10;i++) {
+//            WifiPos wifiPos = new WifiPos();
+//            wifiPos.setClassId(1);
+//            wifiPos.setTime(new Date());
+//            wifiPos.setWifiResult("aaaa" + i);
+//            wifiPos.save();
+//        }
     }
 }
