@@ -1,8 +1,11 @@
 package com.example.administrator.myapplication;
 
-import org.junit.Test;
+import com.example.administrator.myapplication.enerty.WifiPos;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+import org.litepal.tablemanager.Connector;
+
+import java.util.Date;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +14,13 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void additsCorrect() throws Exception {
+        for(int i=0;i<10;i++) {
+            WifiPos wifiPos = new WifiPos();
+            wifiPos.setClassId(1);
+            wifiPos.setTime(new Date());
+            wifiPos.setWifiResult("aaaa" + i);
+            wifiPos.save();
+        }
     }
 }

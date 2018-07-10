@@ -8,6 +8,8 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.widget.EditText;
 
+import org.litepal.tablemanager.Connector;
+
 
 public class MainActivity extends AppCompatActivity {
     private WifiManager wm;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Connector.getDatabase();
         new tvThread().start();
     }
 
