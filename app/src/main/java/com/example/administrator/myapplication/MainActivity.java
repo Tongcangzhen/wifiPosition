@@ -11,6 +11,8 @@ import android.net.wifi.ScanResult;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.view.View;
@@ -19,7 +21,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.administrator.myapplication.enerty.WifiPos;
+import com.example.administrator.myapplication.util.FileUtil;
 
+import org.json.JSONObject;
 import org.litepal.tablemanager.Connector;
 
 
@@ -109,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
             List<ScanResult> scanResults = wm.getScanResults();
 
             for (ScanResult sr : scanResults) {
-                listinfo.append("wifi网络ID：");
+                listinfo.append("wifi网络ID> ");
                 listinfo.append(sr.SSID);
-                listinfo.append("\nwifi MAC地址：");
+                listinfo.append("-wifi MAC地址> ");
                 listinfo.append(sr.BSSID);
-                listinfo.append("\nwifi信号强度：");
-                listinfo.append(sr.level + "\n\n");
+                listinfo.append("-wifi信号强度> ");
+                listinfo.append(sr.level + "--");
             }
             editText2.setText(listinfo.toString());
             String curr_connected_wifi = null;
@@ -130,11 +134,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void savelist() {
-        WifiPos wifiPos = new WifiPos();
-        wifiPos.setClassId(editText3.getText().toString());
-        wifiPos.setWifiResult(editText2.getText().toString());
-        wifiPos.setTime(new Date());
-        wifiPos.save();
+//        WifiPos wifiPos = new WifiPos();
+//        wifiPos.setClassId(editText3.getText().toString());
+//        wifiPos.setWifiResult(editText2.getText().toString());
+//        wifiPos.setTime(new Date());
+//        wifiPos.save();
+        JSONObject object = new JSONObject();
+        try {
+            object.put("class", editText3.getText().toString());
+            object.put("wifiResult", editText2.getText().toString());
+            object.put("date", new Date().toString());
+            object.put("uuid", UUID.randomUUID().toString());
+            try {
+                FileUtil.writeTxtToFile(object.toString()+",", "/sdcard/wifitest/", "ccc.txt");
+                Toast.makeText(MainActivity.this, "成功!", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
 }
